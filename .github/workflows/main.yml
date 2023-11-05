@@ -38,12 +38,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore    
 
-      working-directory: LoadTestApi
+      working-directory: mmfood
 
   
       
     - name: Build project
-      run: dotnet build LoadTestApi.sln --configuration Release 
-      working-directory: LoadTestApi
+      run: dotnet build mmfood.sln --configuration Release 
+      working-directory: mmfood
 
  
