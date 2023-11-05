@@ -1,0 +1,49 @@
+
+
+name: Build .NET Application Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code  
+      uses: actions/checkout@v2
+    - name: Setup .NET 6.0.x
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Add Package by ID and Version
+      run: |
+      
+     
+       
+   
+        nuget sources list
+        #nuget push TokenValidationLibrary.1.0.1.nupkg -Source https://nuget.pkg.github.com/surekhapmm/index.json -ApiKey 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 -ConfigFile Nuget.Config
+        #nuget push  TokenValidationLibrary/1.0.1/TokenValidationLibrary.1.0.1.nupkg -Source "https://nuget.pkg.github.com/surekhapmm/index.json" -ApiKey ${{secrets.API_KEY}}  -ConfigFile  nuget.config -SkipDuplicate
+
+          
+   
+    - name: Restore dependencies
+      run: dotnet restore    
+
+      working-directory: LoadTestApi
+
+  
+      
+    - name: Build project
+      run: dotnet build LoadTestApi.sln --configuration Release 
+      working-directory: LoadTestApi
+
+ 
